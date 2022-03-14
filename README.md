@@ -14,7 +14,8 @@ Your objective in the game is to be fast and shout "Tenzi" first than everyone e
 - [x] Generate 10 random numbers
 - [x] Map array to die component
 - [x] Roll dice button
-- [ ] Hold dice
+- [x] Hold dice
+    - [x] Block held dice on rolls
 - [ ] End Game
 - [ ] Set up a timer
 - [ ] New Game
