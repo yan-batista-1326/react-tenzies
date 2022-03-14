@@ -8,6 +8,7 @@ function App() {
     <div className="App">
       <h1 className="App--title">Tenzi</h1>
       <p className="App--description">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+      
       <div className="dieContainer">
         <Die/>
         <Die/>
