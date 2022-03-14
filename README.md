@@ -10,10 +10,10 @@ Your objective in the game is to be fast and shout "Tenzi" first than everyone e
 ## Todo List
 
 - [x] Die Component
-    - [ ] Update Die Component
-- [ ] Generate 10 random numbers
-- [ ] Map array to die component
-- [ ] Roll dice button
+    - [x] Update Die Component
+- [x] Generate 10 random numbers
+- [x] Map array to die component
+- [x] Roll dice button
 - [ ] Hold dice
 - [ ] End Game
 - [ ] Set up a timer

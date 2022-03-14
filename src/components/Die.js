@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Die() {
+export default function Die(props) {
     return(
         <div className="die">
-            <p>1</p>
+            <p>{props.value}</p>
         </div>
     )
 }
