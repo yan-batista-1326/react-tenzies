@@ -18,7 +18,9 @@ function App() {
     for(let i = 0; i < amount; i++) {
       const obj = {
         id: i, 
-        value: Math.floor(Math.random() * diceSides)
+        // Genereate a value between 0 and (sides - 1)
+        // and add 1 so that excludes 0.
+        value: Math.round((Math.random() * (diceSides - 1) ) + 1)
       }
 
       randomNumbersArr.push(obj);
