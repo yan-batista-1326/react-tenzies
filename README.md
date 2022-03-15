@@ -28,4 +28,4 @@ Your objective in the game is to be fast and shout "Tenzi" first than everyone e
 - [x] Put dots on the dice
 - [x] Track the number of rolls
 - [x] Track the time it took to win
-- [ ] Save best time to localStorage
+- [x] Save best time to localStorage

@@ -4,14 +4,15 @@ import './App.css';
 
 /* Components */
 import Die from './components/Die.js'
-import Stopwatch from './components/Stopwatch';
+import Stopwatch from './components/Stopwatch.js';
 
 function App() {
   const [randomDiceObj, setRandomDiceObj] = useState(allNewValue)
   const [numberOfRolls, setNumberOfRolls] = useState(0)
   const [tenzi, setTenzi] = useState(false)
 
-  const [timerOn, setTimerOn] = React.useState(false);
+  const [timerOn, setTimerOn] = useState(false);
+  
 
   // Check if game ended or not
   useEffect(() => {
@@ -56,6 +57,7 @@ function App() {
         })
       })
     } else {
+      setTimerOn(false)
       setNumberOfRolls(0)
       setRandomDiceObj(allNewValue)
       setTenzi(false)
@@ -92,7 +94,7 @@ function App() {
       <div className="App--gameInfo">
         <p>Number of rolls: {numberOfRolls}</p>
         <Stopwatch timerOn={timerOn}/>
-        <p>Best time: </p>
+        
       </div>
     </div>
   );
