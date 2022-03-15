@@ -40,13 +40,18 @@ function App() {
   // Get an amount of random numbers between 
   // 1 and the max number of dice sides
   function getNewRandomNumbers() {
-    const diceSides = 6;
-    setRandomDiceObj(prevRandomDice => {
-      return prevRandomDice.map(diceObj => {
-        return diceObj.held === false ? 
-        {...diceObj, value: Math.ceil(Math.random() * diceSides)} : {...diceObj}
+    if(!tenzi) {
+      const diceSides = 6;
+      setRandomDiceObj(prevRandomDice => {
+        return prevRandomDice.map(diceObj => {
+          return diceObj.held === false ? 
+          {...diceObj, value: Math.ceil(Math.random() * diceSides)} : {...diceObj}
+        })
       })
-    })
+    } else {
+      setRandomDiceObj(allNewValue)
+      setTenzi(false)
+    }
   }
 
   // Change dice held property
