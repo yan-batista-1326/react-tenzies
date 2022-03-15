@@ -4,11 +4,14 @@ import './App.css';
 
 /* Components */
 import Die from './components/Die.js'
+import Stopwatch from './components/Stopwatch';
 
 function App() {
   const [randomDiceObj, setRandomDiceObj] = useState(allNewValue)
   const [numberOfRolls, setNumberOfRolls] = useState(0)
   const [tenzi, setTenzi] = useState(false)
+
+  const [timerOn, setTimerOn] = React.useState(false);
 
   // Check if game ended or not
   useEffect(() => {
@@ -17,6 +20,7 @@ function App() {
     const allSameNumber = randomDiceObj.every(die => firstValue === die.value)
     if(allHeld && allSameNumber) {
       setTenzi(true);
+      setTimerOn(false)
     }
   }, [randomDiceObj])
 
@@ -43,6 +47,7 @@ function App() {
   function getNewRandomNumbers() {
     if(!tenzi) {
       const diceSides = 6;
+      setTimerOn(true)
       setNumberOfRolls(prevNumberOfRolls => prevNumberOfRolls + 1)
       setRandomDiceObj(prevRandomDice => {
         return prevRandomDice.map(diceObj => {
@@ -84,8 +89,10 @@ function App() {
       </div>
       {tenzi && <p>Congratulations!</p>}
       <button className="App--button" onClick={getNewRandomNumbers}>{tenzi ? "Reset Game" : "Roll"}</button>
-      <div className="gameInfo">
+      <div className="App--gameInfo">
         <p>Number of rolls: {numberOfRolls}</p>
+        <Stopwatch timerOn={timerOn}/>
+        <p>Best time: </p>
       </div>
     </div>
   );
