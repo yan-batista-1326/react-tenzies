@@ -7,6 +7,7 @@ import Die from './components/Die.js'
 
 function App() {
   const [randomDiceObj, setRandomDiceObj] = useState(allNewValue)
+  const [numberOfRolls, setNumberOfRolls] = useState(0)
   const [tenzi, setTenzi] = useState(false)
 
   // Check if game ended or not
@@ -42,6 +43,7 @@ function App() {
   function getNewRandomNumbers() {
     if(!tenzi) {
       const diceSides = 6;
+      setNumberOfRolls(prevNumberOfRolls => prevNumberOfRolls + 1)
       setRandomDiceObj(prevRandomDice => {
         return prevRandomDice.map(diceObj => {
           return diceObj.held === false ? 
@@ -49,6 +51,7 @@ function App() {
         })
       })
     } else {
+      setNumberOfRolls(0)
       setRandomDiceObj(allNewValue)
       setTenzi(false)
     }
@@ -81,6 +84,9 @@ function App() {
       </div>
       {tenzi && <p>Congratulations!</p>}
       <button className="App--button" onClick={getNewRandomNumbers}>{tenzi ? "Reset Game" : "Roll"}</button>
+      <div className="gameInfo">
+        <p>Number of rolls: {numberOfRolls}</p>
+      </div>
     </div>
   );
 }
