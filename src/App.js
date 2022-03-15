@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import './App.css';
 
@@ -6,47 +6,58 @@ import './App.css';
 import Die from './components/Die.js'
 
 function App() {
-  const [randomDiceObj, setRandomDiceObj] = useState([])
+  const [randomDiceObj, setRandomDiceObj] = useState(allNewValue)
+  const [tenzi, setTenzi] = useState(false)
+
+  // Check if game ended or not
+  useEffect(() => {
+    const firstValue = randomDiceObj[0].value;
+    const allHeld = randomDiceObj.every(die => die.held)
+    const allSameNumber = randomDiceObj.every(die => firstValue === die.value)
+    if(allHeld && allSameNumber) {
+      setTenzi(true);
+    }
+  }, [randomDiceObj])
+
+  // Create new dice at the start
+  function allNewValue() {
+    const diceSides = 6;
+    const randomNumbersArr = [];
+    const amount = 10;
+
+    for(let i = 0; i < amount; i++) {
+      const obj = {
+        id: i, 
+        value: Math.ceil(Math.random() * diceSides),
+        held: false
+      }
+  
+      randomNumbersArr.push(obj);
+    }
+    return randomNumbersArr
+  }
 
   // Get an amount of random numbers between 
   // 1 and the max number of dice sides
-  function getRandomNumbers() {
+  function getNewRandomNumbers() {
     const diceSides = 6;
-
-    if(randomDiceObj.length > 0) {
-      setRandomDiceObj(prevRandomDice => {
-        return prevRandomDice.map(diceObj => {
-          return diceObj.held === false ? 
-          {...diceObj, value: Math.round((Math.random() * (diceSides - 1) ) + 1)} : {...diceObj}
-        })
+    setRandomDiceObj(prevRandomDice => {
+      return prevRandomDice.map(diceObj => {
+        return diceObj.held === false ? 
+        {...diceObj, value: Math.ceil(Math.random() * diceSides)} : {...diceObj}
       })
-    } else {
-      const randomNumbersArr = [];
-      const amount = 10;
-
-      for(let i = 0; i < amount; i++) {
-        // Genereate a value between 0 and (sides - 1)
-        // and add 1 so that excludes 0.
-        const randomNumber = Math.round((Math.random() * (diceSides - 1) ) + 1);
-        const obj = {
-          id: i, 
-          value: randomNumber,
-          held: false
-        }
-    
-        randomNumbersArr.push(obj);
-      }
-      setRandomDiceObj(randomNumbersArr)
-    }
+    })
   }
 
   // Change dice held property
   function holdDice(id) {
-    setRandomDiceObj(prevDiceObj => {
-      return prevDiceObj.map(diceObj => {
-        return diceObj.id === id ? {...diceObj, held: !diceObj.held} : diceObj
+    if(!tenzi) {
+      setRandomDiceObj(prevDiceObj => {
+        return prevDiceObj.map(diceObj => {
+          return diceObj.id === id ? {...diceObj, held: !diceObj.held} : diceObj
+        })
       })
-    })
+    }
   }
 
   // Map the numbers array from state to
@@ -63,8 +74,8 @@ function App() {
       <div className="dieContainer">
         {dieElements}
       </div>
-
-      <button className="App--button" onClick={getRandomNumbers}>Roll</button>
+      {tenzi && <p>Congratulations!</p>}
+      <button className="App--button" onClick={getNewRandomNumbers}>{tenzi ? "Reset Game" : "Roll"}</button>
     </div>
   );
 }

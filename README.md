@@ -16,6 +16,6 @@ Your objective in the game is to be fast and shout "Tenzi" first than everyone e
 - [x] Roll dice button
 - [x] Hold dice
     - [x] Block held dice on rolls
-- [ ] End Game
+- [x] End Game
 - [ ] Set up a timer
-- [ ] New Game
+- [x] New Game

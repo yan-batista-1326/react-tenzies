@@ -34,11 +34,12 @@ body {
     outline: none;
     border: none;
     border-radius: 5px;
-    width: 90px;
-    height: 35px;
+    width: 120px;
+    height: 40px;
     font-family: 'Karla', sans-serif;
     font-size: 1rem;
     cursor: pointer;
+    margin-top: 5px;
 }
 
 /*Die Component Style*/
