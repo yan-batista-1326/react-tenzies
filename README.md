@@ -8,7 +8,7 @@ You can check the whole course [here](https://scrimba.com/learn/learnreact)
 </div>
 
 ## Live Site
-You can check the project on netlify [here](https://react-tenzi-app.netlify.app/){:target="_blank" rel="noopener"}
+You can check the project on netlify [here](https://react-tenzi-app.netlify.app/)
 
 ## How to play
 Everyone gets ten dice. When signalled to start, you roll all your dice untill you get the same number on every one of them and shouts "TENZI!".
